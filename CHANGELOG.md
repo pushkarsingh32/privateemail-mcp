@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1
+
+- README: install guides for Claude Code, Claude Desktop, Codex, Cursor, VS Code, Gemini CLI and Zed, plus one-click install buttons for Cursor and VS Code.
+- Added `mcpName` and `server.json` so the server can be listed in the official MCP registry.
+- The server now reports its version from `package.json`.
+
 ## 0.1.0
 
 First release.

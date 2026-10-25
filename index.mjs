@@ -9,6 +9,7 @@ import nodemailer from "nodemailer";
 import MailComposer from "nodemailer/lib/mail-composer";
 import { simpleParser } from "mailparser";
 import { execFileSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 import { z } from "zod";
 
 const EMAIL = process.env.EMAIL_ADDRESS;
@@ -103,7 +104,8 @@ function tool(name, config, handler) {
 
 const addressList = (list) => (list ?? []).map((a) => (a.name ? `${a.name} <${a.address}>` : a.address));
 
-const server = new McpServer({ name: "privateemail-mcp", version: "0.1.0" });
+const { version } = JSON.parse(readFileSync(new URL("./package.json", import.meta.url), "utf8"));
+const server = new McpServer({ name: "privateemail-mcp", version });
 
 const folderArg = z.string().min(1).max(200).default("INBOX").describe("Mailbox folder path, e.g. INBOX or Sent");
 const uidList = z.array(z.number().int().positive()).min(1).max(100);
