@@ -1,0 +1,61 @@
+{
+  "name": "privateemail-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for Namecheap Private Email (and any IMAP/SMTP mailbox): search, read and send mail from Claude, Cursor and other MCP clients.",
+  "type": "module",
+  "main": "index.mjs",
+  "bin": {
+    "privateemail-mcp": "index.mjs"
+  },
+  "files": [
+    "index.mjs",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "SECURITY.md"
+  ],
+  "scripts": {
+    "start": "node index.mjs",
+    "test": "node --test test/server.test.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "email",
+    "email-mcp",
+    "imap",
+    "smtp",
+    "imap-mcp",
+    "namecheap",
+    "namecheap-email",
+    "private-email",
+    "privateemail",
+    "claude",
+    "claude-code",
+    "claude-desktop",
+    "cursor",
+    "ai-agent",
+    "inbox"
+  ],
+  "license": "MIT",
+  "author": "pushkarsingh32",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pushkarsingh32/privateemail-mcp.git"
+  },
+  "homepage": "https://github.com/pushkarsingh32/privateemail-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/pushkarsingh32/privateemail-mcp/issues"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "imapflow": "2.9.1",
+    "mailparser": "3.12.4",
+    "nodemailer": "10.2.1",
+    "zod": "4.6.7"
+  }
+}
