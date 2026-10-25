@@ -1,0 +1,45 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.pushkarsingh32/privateemail-mcp",
+  "title": "Namecheap Private Email MCP",
+  "description": "Search, read and send email from AI assistants. Namecheap Private Email or any IMAP/SMTP.",
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/pushkarsingh32/privateemail-mcp",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "privateemail-mcp",
+      "version": "0.1.0",
+      "runtimeHint": "npx",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "EMAIL_ADDRESS",
+          "description": "Full mailbox address, also used as the login.",
+          "isRequired": true
+        },
+        {
+          "name": "EMAIL_APP_PASSWORD",
+          "description": "Mailbox password or app password. On macOS you can leave it unset and store it in the Keychain instead.",
+          "isRequired": true,
+          "isSecret": true
+        },
+        {
+          "name": "IMAP_HOST",
+          "description": "IMAP server host.",
+          "default": "mail.privateemail.com"
+        },
+        {
+          "name": "SMTP_HOST",
+          "description": "SMTP server host.",
+          "default": "mail.privateemail.com"
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
+import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 
 const SERVER = fileURLToPath(new URL("../index.mjs", import.meta.url));
@@ -38,6 +39,16 @@ test("a missing password is reported as a tool error, not a crash", async () => 
   const [response] = await callServer([{ method: "tools/call", params: { name: "list_folders", arguments: {} } }]);
   assert.equal(response.result.isError, true);
   assert.match(response.result.content[0].text, /password/i);
+});
+
+test("server.json matches package.json, so the registry listing cannot drift", async () => {
+  const read = async (name) => JSON.parse(await readFile(fileURLToPath(new URL(`../${name}`, import.meta.url)), "utf8"));
+  const pkg = await read("package.json");
+  const registry = await read("server.json");
+  assert.equal(registry.name, pkg.mcpName);
+  assert.equal(registry.version, pkg.version);
+  assert.equal(registry.packages[0].identifier, pkg.name);
+  assert.equal(registry.packages[0].version, pkg.version);
 });
 
 test("send_email rejects an invalid recipient before any network call", async () => {

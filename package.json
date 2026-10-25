@@ -2,6 +2,7 @@
   "name": "privateemail-mcp",
   "version": "0.1.0",
   "description": "MCP server for Namecheap Private Email (and any IMAP/SMTP mailbox): search, read and send mail from Claude, Cursor and other MCP clients.",
+  "mcpName": "io.github.pushkarsingh32/privateemail-mcp",
   "type": "module",
   "main": "index.mjs",
   "bin": {
