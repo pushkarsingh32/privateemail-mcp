@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2
+
+- No code changes. First release published from GitHub Actions through npm trusted publishing, with provenance.
+
 ## 0.1.1
 
 - README: install guides for Claude Code, Claude Desktop, Codex, Cursor, VS Code, Gemini CLI and Zed, plus one-click install buttons for Cursor and VS Code.
