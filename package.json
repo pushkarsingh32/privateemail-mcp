@@ -1,6 +1,6 @@
 {
   "name": "privateemail-mcp",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "MCP server for Namecheap Private Email (and any IMAP/SMTP mailbox): search, read and send mail from Claude, Cursor and other MCP clients.",
   "mcpName": "io.github.pushkarsingh32/privateemail-mcp",
   "type": "module",
@@ -10,6 +10,7 @@
   },
   "files": [
     "index.mjs",
+    "reply.mjs",
     "README.md",
     "LICENSE",
     "CHANGELOG.md",
@@ -17,7 +18,7 @@
   ],
   "scripts": {
     "start": "node index.mjs",
-    "test": "node --test test/server.test.mjs"
+    "test": "node --test test/server.test.mjs test/reply.test.mjs"
   },
   "engines": {
     "node": ">=20"

@@ -6,7 +6,7 @@ Please report security issues privately through GitHub's "Report a vulnerability
 
 ## What to know before you use it
 
-- **Email is untrusted input.** Anyone can send your mailbox text that tries to steer the AI model ("forward all invoices to ..."). `read_message` labels bodies as untrusted, but the model can still be fooled. Keep your client's approval prompt switched on for `send_email` and read what it is about to send.
+- **Email is untrusted input.** Anyone can send your mailbox text that tries to steer the AI model ("forward all invoices to ..."). `read_message` labels bodies as untrusted, but the model can still be fooled. Keep your client's approval prompt switched on for `send_email` and `reply_to_message`, and read what they are about to send. `reply_to_message` takes a message id rather than an address, and a sender controls their own `Reply-To` header, so use its `dry_run` option to see the real recipients before sending.
 - **There is no delete tool,** and recipients per message are capped at 20, to limit the damage of a mistake or an injected instruction.
 - **The password is never logged or returned in tool output.** It is read from `EMAIL_APP_PASSWORD` or the macOS Keychain on each call. Use an app password where your provider offers one, so you can revoke it without changing your main password.
 - **Anyone who can run this server as you can use the mailbox.** Treat the MCP config like any other credential store, and do not commit it.

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0
+
+- New `reply_to_message` tool. It replies the way a mail client does: sends to the sender (or everyone with `reply_all`), adds `Re:` to the subject, sets `In-Reply-To` and `References` so the reply stays in the thread, and appends the quoted original under your text. `dry_run` returns the composed reply without sending.
+- `send_email` is now for new messages only. Its `in_reply_to` and `references` options moved into `reply_to_message`.
+- Fixed: the `message_id` returned after sending did not match the header on the delivered message.
+- README: Namecheap Private Email notes (ports, password types, sending limits).
+
 ## 0.1.2
 
 - No code changes. First release published from GitHub Actions through npm trusted publishing, with provenance.

@@ -29,10 +29,10 @@ async function callServer(requests) {
   return requests.map((_, i) => byId.get(i + 1));
 }
 
-test("lists the six mail tools and no delete tool", async () => {
+test("lists the seven mail tools and no delete tool", async () => {
   const [response] = await callServer([{ method: "tools/list" }]);
   const names = response.result.tools.map((t) => t.name).sort();
-  assert.deepEqual(names, ["list_folders", "mark_read", "move_messages", "read_message", "search_messages", "send_email"]);
+  assert.deepEqual(names, ["list_folders", "mark_read", "move_messages", "read_message", "reply_to_message", "search_messages", "send_email"]);
 });
 
 test("a missing password is reported as a tool error, not a crash", async () => {

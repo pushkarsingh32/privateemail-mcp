@@ -3,7 +3,7 @@
   "name": "io.github.pushkarsingh32/privateemail-mcp",
   "title": "Namecheap Private Email MCP",
   "description": "Search, read and send email from AI assistants. Namecheap Private Email or any IMAP/SMTP.",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "repository": {
     "url": "https://github.com/pushkarsingh32/privateemail-mcp",
     "source": "github"
@@ -12,7 +12,7 @@
     {
       "registryType": "npm",
       "identifier": "privateemail-mcp",
-      "version": "0.1.2",
+      "version": "0.2.0",
       "runtimeHint": "npx",
       "transport": {
         "type": "stdio"

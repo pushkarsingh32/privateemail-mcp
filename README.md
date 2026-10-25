@@ -26,7 +26,8 @@ The buttons install the server with placeholder values (`you@yourdomain.com`, `y
 | `list_folders` | Folders with total and unread counts |
 | `search_messages` | Newest matches by sender, recipient, subject, body text, date range or unread state |
 | `read_message` | Headers, plain-text body and attachment names. Does not mark the message read |
-| `send_email` | Send mail (plain text, optional HTML, threaded replies) and save a copy in Sent |
+| `reply_to_message` | Reply the way a mail client does: right recipients, `Re:` subject, thread headers and the quoted original. Supports reply-all and a dry run that shows the final text without sending |
+| `send_email` | Send a new message (plain text, optional HTML) and save a copy in Sent |
 | `mark_read` | Mark messages read or unread |
 | `move_messages` | Move messages to another folder, for example Archive |
 
@@ -226,7 +227,7 @@ Show me unread mail from the last 3 days and tell me which ones need a reply.
 Find the email where a customer asked for a refund, and draft a reply for me to approve.
 ```
 
-The assistant chains `search_messages`, `read_message` and `send_email` on its own. `send_email` should always go through your client's approval prompt.
+The assistant chains `search_messages`, `read_message` and `reply_to_message` on its own. Sending should always go through your client's approval prompt. The prompt shows the message id and your text but not the recipient, so ask for a dry run first: it returns the recipients and the full text before anything goes out.
 
 ## Configuration
 
@@ -240,9 +241,18 @@ All settings are environment variables.
 | `IMAP_HOST` / `IMAP_PORT` | `mail.privateemail.com` / `993` | Port 993 uses TLS. Any other port requires STARTTLS |
 | `SMTP_HOST` / `SMTP_PORT` | `mail.privateemail.com` / `465` | Port 465 uses TLS. Any other port requires STARTTLS |
 
+## Namecheap Private Email notes
+
+From Namecheap's [mail client settings](https://www.namecheap.com/support/knowledgebase/article.aspx/1179/2175/private-email-imap-pop3-smtp-settings/) and [sending limits](https://www.namecheap.com/support/knowledgebase/article.aspx/10719/2179/email-sending-and-usage-limits-for-private-email/) articles:
+
+- The server is `mail.privateemail.com`. Only encrypted connections are accepted: IMAP on 993 (TLS) or 143 (STARTTLS), SMTP on 465 (TLS) or 587 (STARTTLS).
+- The login is the full address, with the mailbox's master password or an application password.
+- Outgoing authentication must be on and SPA (secure password authentication) off. This server already does the former and never uses SPA.
+- Namecheap documents about 500 emails an hour per mailbox on paid plans and 20 an hour on trial plans, and at most 50 recipients per message. This server caps a message at 20 recipients.
+
 ## Security
 
-Email is untrusted input: a message can contain text written to trick the AI into acting on it. Keep your client's approval prompt on for `send_email`. Details and how to report a problem are in [SECURITY.md](SECURITY.md).
+Email is untrusted input: a message can contain text written to trick the AI into acting on it. Keep your client's approval prompt on for `send_email` and `reply_to_message`. Details and how to report a problem are in [SECURITY.md](SECURITY.md).
 
 ## Troubleshooting
 
